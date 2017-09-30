@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Welcome To My Blog Or How To Set Up A Jekyll Blog Hosted On Github"
 date:   2017-09-30 19:28:27 +0200
 categories: jekyll update
 ---
