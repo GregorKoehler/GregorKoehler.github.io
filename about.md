@@ -3,13 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
+I am Gregor Koehler, a soon to be PhD student in Computer Science at the German Cancer Research Center in Heidelberg.
+From October 10 2017 I will be traveling South/Southeast Asia, while sporadically blogging and working remotely for a german startup called Nextjournal.
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
-
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jekyll" %} /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+I did my master's in physics and maintain a broad interest in machine learning so physics/ML will be recurrent themes for this blog, as well as occasional travel impressions and whatever else I think is worth sharing.
