@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "'Initial Commit' Or How To Blog Using Github"
-date:   2017-10-10 13:45:27 +0200
+date:   2018-01-02 13:45:27 +0200
 categories: jekyll update
 ---
 Welcome to my blog! This blog serves as a medium to share things that I find interesting and think others might be interested in as well. I plan to blog about many things ranging from topics in machine learning to my experiences while traveling (and working remotely) and maybe even some thoughts/ideas about fun gadgets and the possible symbiosis of real-world objects and machine learning! Because like my brother, I've always had a thing for new gadgets.

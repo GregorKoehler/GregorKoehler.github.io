@@ -4,6 +4,9 @@ title: About
 permalink: /about/
 ---
 I am Gregor Koehler, a PhD student in Computer Science at the German Cancer Research Center in Heidelberg.
-From June 2017 on I have been writing machine learning articles for a german startup called Nextjournal which aims to make computer aided science reproducible for everyone.
-
-I did my master's in physics and maintain a broad interest in machine learning so physics/ML will be recurrent themes for this blog, as well as occasional travel impressions and whatever else I think is worth sharing (hint: Gadgets).
+Before that I did my master's in physics at KIT in Karlsruhe. During that time I started to develop a broad interest for
+various topics within the field of machine learning. Consequently, ML and physics related topcis will be recurrent themes for this blog.  
+Apart from this I also spend a lot of time on cryptocurrencies and I love to test new gadgets.  
+For the second half of 2017 I have been writing ML articles (mostly intros on different topics) for a german startup called Nextjournal.
+This startup is currently still in "beta", but will soon provide a hosted environment for computer aided research with many nice 
+benefits for the researcher as well as users who might want to reproduce other people's research.
