@@ -3,7 +3,8 @@ layout: page
 title: About
 permalink: /about/
 ---
-I am Gregor Koehler, a PhD student in Computer Science at the German Cancer Research Center in Heidelberg.
+I am Gregor Koehler,  
+a PhD student in Computer Science at the German Cancer Research Center in Heidelberg.
 Before that I did my master's in physics at KIT in Karlsruhe. During that time I started to develop a broad interest for
 various topics within the field of machine learning. Consequently, ML and physics related topcis will be recurrent themes for this blog.  
 Apart from this I also spend a lot of time on cryptocurrencies and I love to test new gadgets.  

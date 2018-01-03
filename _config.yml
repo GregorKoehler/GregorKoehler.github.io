@@ -16,7 +16,8 @@
 title: Machine See, Machine Do
 email: gregor.koe@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-    On this blog you'll eventually find posts about topics in ML, as well as some about gadgets and even remote work experiences.
+    On this blog you can find posts about topics in ML, as well as some about interesting gadgets and 
+    my personal remote work experiences.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: GregorKoe
@@ -24,6 +25,30 @@ github_username:  GregorKoehler
 
 # Build settings
 markdown: kramdown
+# other themes: https://gitlab.com/andrewbanchich/forty-jekyll-theme/blob/master/README.md
+# http://www.rubydoc.info/gems/jekyll-theme-kagami/0.1.12
+# https://github.com/aron-bordin/neo-hpstr-jekyll-theme/
+# http://www.rubydoc.info/gems/cosy-jekyll-theme/1.1.1
+# http://www.rubydoc.info/gems/jekyll-theme-heidi/3.0.2
+# https://github.com/desiredpersona/minimal-jekyll-theme
+# https://github.com/daattali/beautiful-jekyll/tree/gem#readme
+# http://hyde.getpoole.com
+# https://github.com/brettinternet/minimaless
+# https://github.com/gadgetry-io/theme
+    # Installation
+    # Add this line to your Jekyll site's Gemfile:
+
+    #gem "photoblog-theme"
+    #And add this line to your Jekyll site's _config.yml:
+
+    #theme: photoblog-theme
+    #And then execute:
+
+    #$ bundle
+    #Or install it yourself as:
+
+    #$ gem install photoblog-theme
+
 theme: minima
 gems:
   - jekyll-feed
