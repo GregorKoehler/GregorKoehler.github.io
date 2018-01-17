@@ -12,8 +12,8 @@ maybe even some thoughts&ideas about fun gadgets and the possible symbiosis of r
 As for this first blog post I thought it would be best to give a small and concise tutorial on how to set up this very thing you're 
 looking at right now. A blog hosted on GitHub - because chances are if you're reading this you also signed up with GitHub some time ago.
 
-Eventually the plan is to have check marks at the top of the blog helping to filter the content through a selection of three or so topics. 
-If you see something like this by the time you read this - great, future Gregor succeeded!
+Eventually the plan is to have buttons on the blog page helping to filter the content through a selection of three a few topics.
+If you saw something like this by the time you visited my blog - great, future Gregor succeeded in writing some basic HTML and CSS!
 
 # Now for the tutorial:
 First things first - how come anyone with a github account can simply host a blog directly from a GitHub repository?  
@@ -31,9 +31,9 @@ Let's see how we can set up a new website using Jekyll:
   `gem install jekyll bundler`
 
 2. **Create a new repository on Github and clone it to some directory of your choice**
-* name it <*your Github username*>.github.io
+* name it *YOUR_GITHUB_USERNAME*.github.io
 * navigate to some place where you want to check out the Github repository and clone the repository.
-* `git clone <your Github username>.github.io`
+* `git clone YOUR_GITHUB_USERNAME.github.io`
 * in your local repo, run `jekyll new .`
 
 3. **Take a look at the default layout and get acquainted**
@@ -48,8 +48,25 @@ Let's see how we can set up a new website using Jekyll:
   (deleting the title line results in the page not showing up in the menu) 
 
 5. **Customize the default theme or migrate to some other theme**
-* to be continued..
+* theme defaults can be overwritten by creating copies of theme files in your directory and modifying them
+  * locating a theme's files can be done using `bundle show THEME_NAME`  
+	(Jekyll's default theme is called *minima*)
+  * for example the buttons you might have seen on the blog homepage were created by copying *`_layouts/home.html`* and *`_sass/minima.scss`*
+  and modifying them to include some buttons which help filtering the blog posts
+  * Jekyll first looks for the following folders in your base directory before using the theme's defaults:  
+  *`/assets`*  
+  *`/_layouts`*  
+  *`/_includes`*  
+  *`/_sass`*  
 
+6. **Write your first blogpost in Markdown**
+* now for the fun part: with Jekyll blogposts can simply be written in Markdown
+* Jekyll blogposts are sitting in *`/_posts`* and follow the naming convention:  
+	*`YEAR-MONTH-DAY-title.md`*  
+* this [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) may come in handy when writing a post  
+
+7. **Push your changes and let Github Pages handle the rest**
+* once you're happy with your page and blogposts, simply commit the changes and push them 
 
 
 
