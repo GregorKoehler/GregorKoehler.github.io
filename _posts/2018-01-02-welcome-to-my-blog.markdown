@@ -68,7 +68,7 @@ Jekyll blogposts are sitting in *`/_posts`* and follow the naming convention:
 	*`YEAR-MONTH-DAY-title.md`*  
 This [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) may come in handy when writing a post.  
 
-7. **Push your changes and let Github Pages handle the rest**
+7. **Push your changes and let Github Pages handle the rest**  
 Once you're happy with your page and blogposts, simply commit the changes and push them. The changes should be live within seconds.  
 
 
