@@ -48,7 +48,7 @@ markdown: kramdown
 
     #$ gem install photoblog-theme
 
-theme: minima
+theme: jekyll-theme-clean-blog
 gems:
   - jekyll-feed
 exclude:
