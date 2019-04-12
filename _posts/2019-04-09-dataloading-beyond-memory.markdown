@@ -2,28 +2,60 @@
 ---
 layout: post
 title:  "Data Loading Beyond the Memory Limit"
-date:   2019-02-20 08:45:27 +0200
-categories: tech ml
+date:   2019-04-09 09:45:00 +0200
+categories: ml
 ---
 
 # Data Loading Beyond the Memory Limit
 
+## Load Data and Save NumPy Arrays
+1. get list of lists containing filenames from base directory
+```
+def get_list_of_files(base_dir):
+  for type in ['sub_folder_1', 'sub_folder_2']:
+    current_dir = join(base_dir, type)
+    indiv_files = subfolders(current_dir)
 
+    for file in indiv_files:
+      indiv_dir = join(current_dir, file)
+      data_file = join(...)
+```
+This does nothing more than crawling your data directory and returning a list of absolute file paths (check).
 
+2. with the list of filename lists load the data as arrays
+```
+def load_and_preprocess(data_file, output_filename, output_folder):
+  data = your_data_loading_function(data_file)
+  data_npy = convert_to_numpy(data)
 
+  # maybe perform some preprocessing here (crop to non-zero
+  # regions, or more involved preprocessing even)
 
-Recently, a few (2) friends of mine started using [PyTorch](www.pytorch.org). PyTorch offers great tutorials to get you started, but in my opinion there's a specific order to go through the tutorials and additional non-official material which minimizes the confusion when getting started with PyTorch. Just to be clear, in my humble opinion PyTorch is currently (still holds in 2019) the most intuitive Deep Learning framework out there, but why not try to make things even more smooth?
+  original_shape = data_npy.shape
 
-So without further ado, here's my preferred order of materials to get easy the way into PyTorch-land!
+  # stack data arrays and cast to consistent data type
+  data_npy = np.concatenate([i[None] for i in data_npy]).astype(np.float32)
 
-0. [What is PyTorch?](https://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html#sphx-glr-beginner-blitz-tensor-tutorial-py)
-  * basic intro showing the relation between PyTorch tensors and NumPy arrays
-  * also introduces the notion of the `torch.device` and how to move tensors to/from GPU
-1. [Autograd - Automatic Differentiation](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#sphx-glr-beginner-blitz-autograd-tutorial-py)
-  * introduces `autograd`, best read in conjunction with [notes on autograd mechanics](https://pytorch.org/docs/stable/notes/autograd.html)
-2. [What is torch.nn, really?](https://pytorch.org/tutorials/beginner/nn_tutorial.html)
-  * great walk-through of multiple levels of PyTorch abstraction in the setting of a basic MNIST example
-3. [Grokking PyTorch](https://github.com/Kaixhin/grokking-pytorch)
-  * again, an MNIST example, but with explanations which nicely complement the one in `2.`
+  np.save(join(output_folder, output_filename) + '.npy', data_npy)
 
-to be continued...
+  # add metadata, e.g. elements computed during preprocessing
+  # which help in the analysis later on
+  metadata = {'metadata_element1': ..., ...}
+
+  save_pickle(metadata, join(output_folder, output_filename + '.pkl'))
+```  
+
+In main do:  
+```
+base_dir = '... absolute path'
+list_of_lists = get_list_of_files(base_dir)
+output_folder = 'some folder preferrably on SSD'
+maybe_mkdir_output_folder(output_folder)
+
+indiv_names = [i.split('/')[somewhere] for i in list_of_lists]
+p = Pool(preprocesses = num_physical_cores)
+p.starmap(load_and_preprocess, zip(list_of_lists, indiv_names, [output_folder] * len(list_of_lists)))
+```
+
+This function should load a given filename, optionally preprocess it, and save it as a NumPy file.  
+Note that there are different strategies as for how to
