@@ -7,7 +7,7 @@ categories: ml
 ---
 
 # Data Loading Beyond the Memory Limit
-
+In this post I'll go over the process of loading a dataset and preparing it to be used in a DataLoader which efficiently loads the files from your SSD for datasets which don't fit into memory. I'll be making use of NumPy 'memmap' loading for this as this helps loading only the parts of the previously saved NumPy arrays which are currently needed.
 
 ## Load Data and Save NumPy Arrays
 1. get list of lists containing filenames from base directory
@@ -112,4 +112,82 @@ class MyDataLoader(batchgenerators.dataloading.data_loader.DataLoader):
       ground_truth[i] = some_part_of_data
 
     return {'data': data, 'ground_truth': ground_truth, 'metadata': meta_data, 'indiv_name': indiv_names}
+```
+
+
+## Using the Data Loader
+In our training script, we can now simply use the Data Loader and create batches on the fly:
+```
+preprocessed_folder = 'path on SSD'
+list_of_indivs = get_list_of_individuals(preprocessed_folder)
+train, test = get_splitting_deterministic(list_of_indivs)
+
+train_loader = MyDataLoader(data=train, batch_size=.., patch_size=.., num_threads_in_multithreaded=.., ..)
+test_loader = MyDataLoader(data=test, batch_size=.., patch_size=.., num_threads_in_multithreaded=.., ..)
+
+for batch_id, batch in enumerate(train_loader):
+  data = batch['data'].cuda()
+  gt = batch['ground_truth'].cuda()
+
+  output = my_model(data)
+
+  loss = my_loss(output, gt)
+  loss.backward()
+```
+This should keep you from running into the hated CPU-bottleneck (multithreaded loading can speed things up here if needed, which is probably).
+
+
+## Bonus: Data Augmentation
+The 'batchgenerators' repo comes with a lot of useful data augmentations. Since batchgnerators was developed with medical images in mind, it supports basically all its transformations for 3D images as well. Let's see an example of typical training augmentations:
+
+```
+# make sure the relevalt transforms are imported
+
+tr_transforms = []
+
+tr_transforms.append(
+  SpatialTransform_2(
+    patch_size, [i//2 for i in patch_size],
+    do_elastic_deform=True, deformation_scale=(0,0.25),
+    do_rotation=True,
+    angle_x = (-15 / 360 * 2 * np.pi,  15 / 360 * 2 * np.pi),
+    angle_y = (-15 / 360 * 2 * np.pi,  15 / 360 * 2 * np.pi),
+    angle_z = (-15 / 360 * 2 * np.pi,  15 / 360 * 2 * np.pi),
+    do_scale = True, scale=(0.75, 1.25),
+    border_mode_data = 'constant', border_cval_data = 0,
+    border_mode_seg = 'constant', border_cval_seg = 0,
+    order_seg = 1, order_data = 3,
+    random_crop = True,
+    p_el_per_sample=0.2, p_rot_per_sample=0.2, p_scale_per_sample=0.2
+    )
+  )
+
+tr_transforms.append(MirrorTransform(axes=(0,1,2)))
+
+tr_transforms.append(BrightnessMultiplicativeTransform((0.7, 1.5), per_channel=True, p_per_sample=0.15))
+
+# ... more transforms, e.g. gamma transform, gaussian blur, ..
+
+# this one directly converts the NumPy arrays to PyTorch tensors - if included, use pin_memory=True in MultiThreadedAugmenter!
+tr_transforms.append(NumpyToTensor())
+
+tr_transforms = Compose(tr_transforms)
+
+tr_gen = MultiThreadedAugmenter(train_loader, tr_transforms, num_processes=num_physical_cores, num_cached_per_queue=3, seeds=None, pin_memory=True)
+val_gen = MultiThreadedAugmenter(train_loader, None, num_processes=num_physical_cores, num_cached_per_queue=3, seeds=None, pin_memory=True)
+```
+Usage with epochs
+```
+num_batches_per_epoch = 50
+num_validation_batches_per_epoch = 10
+num_epochs = 2
+
+for epoch in range(num_epochs):
+  for batch in range(num_batches_per_epoch):
+    batch = next(tr_gen) # alternatively can also use enumerate(tr_gen)
+    # do training steps
+
+  for batch in range(num_validation_batches_per_epoch):
+    batch = next(val_gen)
+    # run eval and compute metrics
 ```
