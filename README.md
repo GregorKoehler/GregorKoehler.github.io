@@ -1,20 +1,11 @@
-# [Start Bootstrap - One Page Wonder](https://startbootstrap.com/template-overviews/one-page-wonder/)
+# Gregor's Personal Github-Page
 
+
+# Instructions to Get Started with this Template
 [One Page Wonder](http://startbootstrap.com/template-overviews/one-page-wonder/) is a basic one page template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
 ## Preview
-
-[![One Page Wonder Preview](https://startbootstrap.com/assets/img/screenshots/themes/one-page-wonder.png)](https://blackrockdigital.github.io/startbootstrap-one-page-wonder/)
-
 **[View Live Preview](https://blackrockdigital.github.io/startbootstrap-one-page-wonder/)**
-
-## Status
-
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-one-page-wonder/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-one-page-wonder.svg)](https://www.npmjs.com/package/startbootstrap-one-page-wonder)
-[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-one-page-wonder.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-one-page-wonder)
-[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-one-page-wonder/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-one-page-wonder)
-[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-one-page-wonder/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-one-page-wonder?type=dev)
 
 ## Download and Installation
 
